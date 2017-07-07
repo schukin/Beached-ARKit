@@ -15,6 +15,7 @@ private let beachedManScaleFactor: CGFloat = 0.0015
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet var label: UILabel!
     private var beachedManWithShadowNode: SCNNode?
     
     override func viewDidLoad() {
@@ -122,6 +123,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                     
                     self.beachedManWithShadowNode = totalNode
                     self.sceneView.scene.rootNode.addChildNode(totalNode)
+                    
+                    self.label.text = "Tap on a flat surface to move to a new location, or drag to move. Pinch to rotate."
                 }
             }
         }

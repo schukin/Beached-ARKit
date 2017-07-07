@@ -1,23 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13127" systemVersion="16F43c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="Beached" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7zX-Id-dvI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wmp-H0-Hae"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x3k-Zl-Qlz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </arscnView>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNe-WV-iTI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29f-w6-B57">
+                                <rect key="frame" x="-0.5" y="606" width="375" height="61"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point your camera at a flat surface. Tracking takes a few seconds..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vf7-j1-RY5">
+                                        <rect key="frame" x="20" y="19.5" width="335" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.66000000000000003" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vf7-j1-RY5" firstAttribute="centerY" secondItem="29f-w6-B57" secondAttribute="centerY" id="F1U-UH-2ZG"/>
+                                    <constraint firstItem="vf7-j1-RY5" firstAttribute="width" secondItem="29f-w6-B57" secondAttribute="width" constant="-40" id="cNV-nP-f4g"/>
+                                    <constraint firstItem="vf7-j1-RY5" firstAttribute="centerX" secondItem="29f-w6-B57" secondAttribute="centerX" id="kzP-NO-UYs"/>
+                                    <constraint firstItem="vf7-j1-RY5" firstAttribute="height" secondItem="29f-w6-B57" secondAttribute="height" constant="-40" id="nga-Id-KPA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RNe-WV-iTI" firstAttribute="top" secondItem="7zX-Id-dvI" secondAttribute="bottom" constant="-20" id="51f-Jo-OQ9"/>
+                            <constraint firstItem="29f-w6-B57" firstAttribute="width" secondItem="x3k-Zl-Qlz" secondAttribute="width" id="Gpj-df-6y2"/>
+                            <constraint firstItem="Wmp-H0-Hae" firstAttribute="top" secondItem="RNe-WV-iTI" secondAttribute="bottom" id="iBG-Gq-HmS"/>
+                            <constraint firstItem="Wmp-H0-Hae" firstAttribute="top" secondItem="29f-w6-B57" secondAttribute="bottom" id="ndy-Pz-b9s"/>
+                            <constraint firstItem="29f-w6-B57" firstAttribute="centerX" secondItem="x3k-Zl-Qlz" secondAttribute="centerX" id="rqA-Ns-zR6"/>
+                            <constraint firstItem="RNe-WV-iTI" firstAttribute="leading" secondItem="x3k-Zl-Qlz" secondAttribute="leading" id="vm2-x5-n4d"/>
+                            <constraint firstAttribute="trailing" secondItem="RNe-WV-iTI" secondAttribute="trailing" id="yfi-Ax-RJp"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="label" destination="vf7-j1-RY5" id="N6C-nD-NrR"/>
+                        <outlet property="sceneView" destination="RNe-WV-iTI" id="O6m-rf-qha"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
