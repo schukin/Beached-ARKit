@@ -93,20 +93,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingSessionConfiguration()
-        
-        configuration.planeDetection = .horizontal
-        
-        // Run the view's session
-        sceneView.session.run(configuration)
+        sceneView.session.run(sessionConfiguration)
+    }
+    
+    private var sessionConfiguration: ARSessionConfiguration {
+        if ARWorldTrackingSessionConfiguration.isSupported {
+            let configuration = ARWorldTrackingSessionConfiguration()
+            configuration.planeDetection = .horizontal
+            return configuration;
+        } else {
+            return ARSessionConfiguration()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
         sceneView.session.pause()
     }
 
