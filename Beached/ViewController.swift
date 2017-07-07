@@ -45,31 +45,49 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func tapGestureRecognized(_ tapGesture: UITapGestureRecognizer) {
+        guard let beachedManWithShadowNode = beachedManWithShadowNode else {
+            return
+        }
+        
         let point = tapGesture.location(in: tapGesture.view)
-        let results = sceneView.hitTest(point, types: .estimatedHorizontalPlane)
+        let results = sceneView.hitTest(point, types: .existingPlane)
         
         if let result = results.first {
             let worldTransform = result.worldTransform
-            beachedManWithShadowNode?.transform = SCNMatrix4(worldTransform)
+            beachedManWithShadowNode.transform = SCNMatrix4(worldTransform)
         }
     }
     
+    private var panStart: SCNVector3?
+    
     @objc func panGestureRecognized(_ panGesture: UIPanGestureRecognizer) {
-        let panScaleFactor: Float = 100.0
+        guard let beachedManWithShadowNode = beachedManWithShadowNode else {
+            return
+        }
         
-        if let totalNode = beachedManWithShadowNode {
-            let translation = panGesture.translation(in: panGesture.view)
-            totalNode.position.x = Float(translation.x) / panScaleFactor
-            totalNode.position.z = Float(translation.y) / panScaleFactor
+        let panScaleFactor: Float = 500.0
+        
+        switch (panGesture.state) {
+        case .began:
+            panStart = beachedManWithShadowNode.position
+        case .changed:
+            if let panStart = panStart {
+                let translation = panGesture.translation(in: panGesture.view)
+                beachedManWithShadowNode.position.x = panStart.x + Float(translation.x) / panScaleFactor
+                beachedManWithShadowNode.position.z = panStart.y + Float(translation.y) / panScaleFactor
+            }
+        default:
+            panStart = nil
         }
     }
     
     @objc func rotateGestureRecognized(_ gesture: UIRotationGestureRecognizer) {
-        if let totalNode = beachedManWithShadowNode {
-            let rotation = Float(gesture.rotation)
-            print("rotation amount = \(rotation)")
-            totalNode.eulerAngles = SCNVector3Make(0, rotation, 0)
+        guard let beachedManWithShadowNode = beachedManWithShadowNode else {
+            return
         }
+        
+        let rotation = Float(gesture.rotation)
+        beachedManWithShadowNode.eulerAngles = SCNVector3Make(0, rotation, 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
